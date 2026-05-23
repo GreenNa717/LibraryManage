@@ -128,7 +128,7 @@ miniprogram/src/config/env.js
 | env | 场景 | API |
 |---|---|---|
 | `devtools` | 电脑微信开发者工具 | `http://127.0.0.1:8080/api` |
-| `lan` | 手机真机局域网调试 | `http://192.168.194.8:8080/api` |
+| `lan` | 手机真机局域网调试 | `http://你的电脑局域网IP:8080/api` |
 | `tunnel` | HTTPS 内网穿透 | `https://穿透域名/api` |
 | `prod` | 正式版 | `https://正式API域名/api` |
 
@@ -136,8 +136,8 @@ miniprogram/src/config/env.js
 
 - 真机不能使用 `127.0.0.1`，因为那会指向手机本机。
 - 手机浏览器能打开 `http://电脑局域网IP:8080/api` 并返回 `401`，说明网络已经通，401 只是未登录或 token 过期。
-- 当前本机调试配置为 `const env = 'lan'`，请求 `http://192.168.194.8:8080/api`。
-- 如果更换 Wi-Fi、热点或电脑网卡，必须同步修改 `lan.apiBaseUrl` 中的 IP。
+- 默认本机调试配置为 `const env = 'devtools'`，请求 `http://127.0.0.1:8080/api`。
+- 手机真机调试前需改为 `env = 'lan'`，并同步修改 `lan.apiBaseUrl` 中的电脑局域网 IP。
 - Windows 防火墙需要允许后端 8080 端口入站，否则手机可能访问不到电脑后端。
 - 体验版和正式版必须使用 HTTPS 合法域名。
 - 微信公众平台必须配置 request 合法域名。
@@ -189,7 +189,6 @@ src/pages/books/index.vue
 src/pages/book-detail/index.vue
 src/pages/borrows/index.vue
 src/pages/profile/index.vue
-src/pages/bind/index.vue
 ```
 
 当前能力：

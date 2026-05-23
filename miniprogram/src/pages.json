@@ -32,12 +32,6 @@
       }
     },
     {
-      "path": "pages/bind/index",
-      "style": {
-        "navigationBarTitleText": "绑定账号"
-      }
-    },
-    {
       "path": "pages/admin/index",
       "style": {
         "navigationBarTitleText": "管理后台"

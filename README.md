@@ -53,11 +53,20 @@ mysql -u root -p < sqlfile/init.sql
 
 ### 后端
 
-`application.yaml` 通过环境变量读取数据库和 JWT 配置，默认连接本机 `librarymanage` 数据库。首次运行至少建议设置数据库密码和 JWT secret：
+`application.yaml` 通过环境变量读取数据库和 JWT 配置，默认连接本机 `librarymanage` 数据库。运行前必须设置数据库密码和 JWT secret：
 
 ```bash
 export LIBRARY_DB_PASSWORD='你的本地数据库密码'
 export LIBRARY_JWT_SECRET='请替换为至少 32 位的随机密钥'
+```
+
+可选生产配置：
+
+```bash
+export LIBRARY_CORS_ALLOWED_ORIGINS='https://admin.example.com,https://app.example.com'
+export LIBRARY_SWAGGER_ENABLED=false
+export LIBRARY_METADATA_PROXY_ENABLED=false
+export LIBRARY_GOOGLE_BOOKS_API_KEY='你的 Google Books API Key'
 ```
 
 ```bash
@@ -81,9 +90,9 @@ npm run dev
 3. 微信开发者工具导入 `miniprogram/dist/dev/mp-weixin`（开发）或 `dist/build/mp-weixin`（构建）
 4. HBuilderX App 真机调试可运行 App 平台，或导入 `miniprogram/dist/build/app`
 5. 先启动后端
-6. 电脑开发者工具可用 `env = 'devtools'`，请求 `http://127.0.0.1:8080/api`
-7. 手机真机调试使用 `env = 'lan'`，当前请求 `http://192.168.194.8:8080/api`
-8. 手机浏览器访问局域网 API 返回 `401` 代表网络已通，只是未登录
+6. 默认 `env = 'devtools'`，请求 `http://127.0.0.1:8080/api`
+7. 手机真机调试前，把 `env` 改为 `lan`，并将 `lan.apiBaseUrl` 替换为电脑局域网 IP
+8. 正式版把 `env` 改为 `prod`，并使用 HTTPS API 域名
 9. 使用 `reader001 / user123` 登录测试
 
 ## 关键接口
@@ -153,9 +162,19 @@ npm run dev
 cd frontend && npm run build
 ```
 
-Nginx 托管 `frontend/dist`，`/api/` 反向代理到 Spring Boot。
+Nginx 托管 `frontend/dist`，`/api/` 反向代理到 Spring Boot。Web 前端使用 history 路由，Nginx 需要把深链回退到 `index.html`：
 
-小程序正式版需要：真实 AppID + HTTPS API 域名 + 微信公众平台 request 合法域名。
+```nginx
+location / {
+    try_files $uri $uri/ /index.html;
+}
+
+location /api/ {
+    proxy_pass http://127.0.0.1:8080/api/;
+}
+```
+
+小程序正式版需要：真实 AppID + HTTPS API 域名 + 微信公众平台 request 合法域名。发布前还需要把 `miniprogram/src/manifest.json` 中的 AppID 替换为真实值。
 
 App 正式包建议同步改为 HTTPS API，并按 Android/iOS 平台要求配置网络安全策略。
 

@@ -54,9 +54,6 @@ public class AuthService {
         if (storedPassword == null) {
             return false;
         }
-        if (storedPassword.startsWith("$2a$") || storedPassword.startsWith("$2b$") || storedPassword.startsWith("$2y$")) {
-            return passwordEncoder.matches(rawPassword, storedPassword);
-        }
-        return rawPassword.equals(storedPassword);
+        return passwordEncoder.matches(rawPassword, storedPassword);
     }
 }

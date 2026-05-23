@@ -17,7 +17,6 @@ mybatis-plus:
   type-aliases-package: library.entity
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       id-type: auto
@@ -27,21 +26,24 @@ server:
   port: 8080
 
 jwt:
-  secret: ${LIBRARY_JWT_SECRET:change-this-development-secret-at-least-32-chars}
+  secret: ${LIBRARY_JWT_SECRET}
   expiration: ${LIBRARY_JWT_EXPIRATION:86400000}
 
 library:
+  cors:
+    allowed-origins: ${LIBRARY_CORS_ALLOWED_ORIGINS:http://localhost:3000,http://127.0.0.1:3000}
   metadata:
     proxy:
-      enabled: true
-      host: 127.0.0.1
-      port: 7890
+      enabled: ${LIBRARY_METADATA_PROXY_ENABLED:false}
+      host: ${LIBRARY_METADATA_PROXY_HOST:127.0.0.1}
+      port: ${LIBRARY_METADATA_PROXY_PORT:7890}
     google:
-      api-key: ""
+      api-key: ${LIBRARY_GOOGLE_BOOKS_API_KEY:}
 
 springdoc:
   api-docs:
-    enabled: true
+    enabled: ${LIBRARY_SWAGGER_ENABLED:false}
   swagger-ui:
+    enabled: ${LIBRARY_SWAGGER_ENABLED:false}
     tags-sorter: alpha
     operations-sorter: alpha
