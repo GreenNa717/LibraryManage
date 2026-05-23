@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: library
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${LIBRARY_DB_URL:jdbc:mysql://localhost:3306/librarymanage?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true}
+    username: ${LIBRARY_DB_USERNAME:root}
+    password: ${LIBRARY_DB_PASSWORD:}
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: library.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      update-strategy: not_null
+
+server:
+  port: 8080
+
+jwt:
+  secret: ${LIBRARY_JWT_SECRET:change-this-development-secret-at-least-32-chars}
+  expiration: ${LIBRARY_JWT_EXPIRATION:86400000}
+
+library:
+  metadata:
+    proxy:
+      enabled: true
+      host: 127.0.0.1
+      port: 7890
+    google:
+      api-key: ""
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha

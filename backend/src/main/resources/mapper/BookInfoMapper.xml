@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="library.mapper.BookInfoMapper">
+
+    <select id="selectHotBooks" resultType="map">
+        SELECT b.id, b.title, b.author, COUNT(br.id) AS borrowCount
+        FROM book_info b
+        LEFT JOIN borrow_record br ON b.id = br.book_id
+        GROUP BY b.id, b.title, b.author
+        ORDER BY borrowCount DESC
+        LIMIT #{limit}
+    </select>
+
+</mapper>

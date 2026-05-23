@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+miniprogram/node_modules/
+
+# Build outputs
+target/
+frontend/dist/
+miniprogram/dist/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Local editor, assistant, and environment files
+.claude/
+.idea/
+.vscode/
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# WeChat / uni-app local-only config
+miniprogram/.hbuilderx/
+miniprogram/project.private.config.json

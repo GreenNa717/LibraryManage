@@ -1,0 +1,85 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/books/index",
+      "style": {
+        "navigationBarTitleText": "图书大厅"
+      }
+    },
+    {
+      "path": "pages/borrows/index",
+      "style": {
+        "navigationBarTitleText": "我的借阅"
+      }
+    },
+    {
+      "path": "pages/profile/index",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    },
+    {
+      "path": "pages/book-detail/index",
+      "style": {
+        "navigationBarTitleText": "图书详情"
+      }
+    },
+    {
+      "path": "pages/bind/index",
+      "style": {
+        "navigationBarTitleText": "绑定账号"
+      }
+    },
+    {
+      "path": "pages/admin/index",
+      "style": {
+        "navigationBarTitleText": "管理后台"
+      }
+    }
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2f80ed",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "height": "72px",
+    "fontSize": "13px",
+    "iconWidth": "38px",
+    "spacing": "3px",
+    "list": [
+      {
+        "pagePath": "pages/books/index",
+        "text": "图书",
+        "iconPath": "static/tab/tab-book.png",
+        "selectedIconPath": "static/tab/tab-book-active.png"
+      },
+      {
+        "pagePath": "pages/borrows/index",
+        "text": "借阅",
+        "iconPath": "static/tab/tab-borrow.png",
+        "selectedIconPath": "static/tab/tab-borrow-active.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "static/tab/tab-profile.png",
+        "selectedIconPath": "static/tab/tab-profile-active.png"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "图书馆",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f4f7fb",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
+  }
+}

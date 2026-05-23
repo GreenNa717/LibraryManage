@@ -1,0 +1,75 @@
+@import './tokens';
+
+.mp-page {
+  padding: 24rpx;
+  background: $mp-bg;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.mp-page-safe {
+  padding: 24rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  background: $mp-bg;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.mp-page-with-fab {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 180rpx);
+}
+
+.mp-page-with-bottom-bar {
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+.mp-muted {
+  color: $mp-text-muted;
+  font-size: 24rpx;
+}
+
+.mp-section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: $mp-text-main;
+  margin-bottom: 20rpx;
+}
+
+.mp-no-more {
+  text-align: center;
+  padding: 24rpx 0;
+  color: $mp-text-muted;
+  font-size: 24rpx;
+}
+
+.mp-btn-full {
+  width: 100%;
+}
+
+.mp-btn-inline {
+  display: inline-block;
+  width: auto;
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+}
+
+.mp-skeleton-card {
+  margin-bottom: 20rpx;
+}
+
+.mp-error-wrap {
+  text-align: center;
+  padding: 60rpx 40rpx;
+}
+
+.mp-error-wrap-btn {
+  margin-top: 16rpx;
+}
+
+.mp-sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}

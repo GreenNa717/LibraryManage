@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="library.mapper.BorrowRecordMapper">
+
+    <select id="selectMonthlyBorrows" resultType="map">
+        SELECT
+            DATE_FORMAT(borrow_time, '%Y-%m') AS month,
+            COUNT(*) AS count
+        FROM borrow_record
+        WHERE borrow_time >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+        GROUP BY DATE_FORMAT(borrow_time, '%Y-%m')
+        ORDER BY month ASC
+    </select>
+
+</mapper>
